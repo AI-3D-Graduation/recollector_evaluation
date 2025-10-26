@@ -24,6 +24,7 @@
 - **영향**: 
   - ↑ 많을수록: 더 디테일하고 부드러운 표면
   - ↓ 적을수록: 렌더링 성능 향상, GPU 부담 감소
+  - 모델 생성물 퀄리티의 가장 핵심
 - **비교 기준**:
   - 비슷한 디테일에서 삼각형 수가 적은 쪽이 우수
   - 모바일: ~10만개 이하
@@ -127,30 +128,6 @@
 
 ---
 
-### 파일 효율성
-
-#### 파일 크기
-- **영향**:
-  - 네트워크 다운로드 시간
-  - 로딩 속도
-  - 저장 공간
-  
-- **비교 기준**:
-  - 파일 크기 / 삼각형 수 비율
-  - 예: 100KB당 1만 삼각형이면 효율적
-
-#### 압축 기술
-- **Draco 압축** (KHR_draco_mesh_compression):
-  - ✅ 장점: 기하학 데이터 50~90% 압축
-  - ❌ 단점: 디코딩 시간 추가
-  - **권장**: 웹/모바일에서 필수
-
-- **KTX2/Basis 텍스처 압축**:
-  - GPU에서 직접 디코딩
-  - 메모리 및 파일 크기 대폭 감소
-
----
-
 ## 성능 권장 기준
 
 ### 📱 모바일 (Android/iOS)
@@ -210,53 +187,38 @@
 - [ ] Occlusion Map으로 현실감 향상
 - [ ] PBR 머티리얼 제대로 설정 (Metallic/Roughness)
 - [ ] 텍스처 해상도가 적절 (2K 권장)
-- [ ] 드로우 콜이 플랫폼 권장치 이내
 
 ---
 
-## 비교 시나리오 예시
+## 시나리오 예시
 
-### 시나리오 1: 캐릭터 모델
+### 시나리오 1: 서로 다른 2개 캐릭터 모델 비교
 **모델 A**
 - 삼각형: 50,000
 - 텍스처: 2K × 5개 (Base, Normal, Metallic/Roughness, Occlusion, Emissive)
 - 파일 크기: 8MB
 - Normal Map: ✅
-- Draco: ✅
 
 **모델 B**
 - 삼각형: 150,000
 - 텍스처: 4K × 3개 (Base, Normal, Metallic/Roughness)
 - 파일 크기: 25MB
 - Normal Map: ✅
-- Draco: ❌
 
 **평가**:
 - **디테일**: B가 더 높은 폴리곤 수로 우수
 - **텍스처**: B가 더 높은 해상도 (4K vs 2K)
-- **효율성**: A가 Draco 압축으로 파일 크기 1/3
-- **최적화**: A가 모바일/웹에 적합, B는 PC 전용
 - **결론**: 타겟이 모바일/웹이면 A, 고사양 PC면 B
 
-### 시나리오 2: 건축물 모델
+### 시나리오 2: 단일 모델 퀄리티 평가
 **모델 A**
-- 삼각형: 200,000
-- 드로우 콜: 15개
-- 텍스처: 1K × 8개
-- 텍스처 아틀라스: ✅
-
-**모델 B**
-- 삼각형: 180,000
-- 드로우 콜: 120개
-- 텍스처: 2K × 50개
-- 텍스처 아틀라스: ❌
+- 삼각형: 70,000
+- 텍스처: 3K × 3개 (Base, Normal, Metallic/Roughness)
+- 파일 크기: 12MB
+- Normal Map: ✅
 
 **평가**:
-- **폴리곤**: 비슷함
-- **드로우 콜**: A가 압도적으로 우수 (15 vs 120)
-- **텍스처**: B가 고품질이지만 관리 어려움
-- **성능**: A가 CPU 효율성 훨씬 우수
-- **결론**: A가 훨씬 최적화됨
+- **산업**: 애니메이션과 같은 비실시간/고품질 렌더링에는 부적합, 게임같은 실시간 렌더링에는 적합
 
 ---
 
@@ -264,9 +226,9 @@
 
 - [Khronos glTF Specification](https://registry.khronos.org/glTF/)
 - [glTF Best Practices](https://www.khronos.org/files/gltf20-reference-guide.pdf)
-- [Draco 3D Compression](https://google.github.io/draco/)
 - [Basis Universal Texture Format](https://github.com/BinomialLLC/basis_universal)
 - [Three.js Optimization Guide](https://discoverthreejs.com/tips-and-tricks/)
+- (https://www.3dservicesindia.com/polycount-guidelines-in-3d-modeling/?utm_source=chatgpt.com)
 
 ---
 
