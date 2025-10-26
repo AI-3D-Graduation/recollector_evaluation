@@ -228,7 +228,7 @@
 - [glTF Best Practices](https://www.khronos.org/files/gltf20-reference-guide.pdf)
 - [Basis Universal Texture Format](https://github.com/BinomialLLC/basis_universal)
 - [Three.js Optimization Guide](https://discoverthreejs.com/tips-and-tricks/)
-- (https://www.3dservicesindia.com/polycount-guidelines-in-3d-modeling/?utm_source=chatgpt.com)
+- [Polycount Guidelines in 3D Modeling by Industry](https://www.3dservicesindia.com/polycount-guidelines-in-3d-modeling/?utm_source=chatgpt.com)
 
 ---
 
